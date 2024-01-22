@@ -11,8 +11,6 @@ const isTeamList = ref(path.value == "/");
 const isCreateTeam = ref(path.value == "/create");
 const isUpdateTeam = ref(path.value == "/update");
 const isDeleteTeam = ref(path.value == "/delete");
-
-console.log(isTeamList, path.value, window.location);
 </script>
 
 <template>
@@ -58,7 +56,8 @@ console.log(isTeamList, path.value, window.location);
             </li>
           </ul>
         </li>
+        <button><img src="/images/register.png" className="text-white hover:scale-[120%] duration-400 transition-all"  alt="login" width="30" height="30"/></button>
       </ul>
     </div>
-  </div>
+    </div>
 </template>

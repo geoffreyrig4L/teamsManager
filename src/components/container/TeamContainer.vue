@@ -6,7 +6,7 @@ defineProps<{
 }>();
 </script>
 <template>
-  <div class="w-96 bg-base-300 rounded-box p-4 flex flex-col gap-6">
+  <div class="w-96 h-52 bg-base-300 rounded-box p-4 flex flex-col gap-4">
     <div class="flex gap-4 items-center">
       <img
         :src="'/images/logos/' + urlLogo"
@@ -14,15 +14,11 @@ defineProps<{
         width="30"
         height="auto"
       />
-      <h1 class="text-2xl">{{ name }}</h1>
+      <h1 class="text-2xl font-bold">{{ name }}</h1>
     </div>
-
-    <p class="text-lg">{{ description }}</p>
     <div>
-      <p>Effectif</p>
-      <ul>
-        <li>Aubameyang</li>
-      </ul>
+      <h2 class="text-lg font-bold">Description :</h2>
+      <p class="text-md">{{ description }}</p>
     </div>
   </div>
 </template>

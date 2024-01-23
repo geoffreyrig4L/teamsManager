@@ -4,7 +4,7 @@ import TeamContainer from "../container/TeamContainer.vue";
 const teams = {
   arsenal: {
     name: "Arsenal",
-    description: "L OM de la première league",
+    description: "L'OM de la première league",
     urlLogo: "arsenal.svg",
   },
   barca: {
@@ -20,12 +20,12 @@ const teams = {
   lens: {
     name: "RC Lens",
     description:
-      "OHHHHHHHH NORD, C ETAIT LES CORONDS, LA TERRE C ETAIT LE CHARBON, LE CIEL C ETAIT L HORIZON, LES HOMMES DES MINEURS DE FOND",
+      "Oh nord, c etait les corons, la terre c etait le charbon, le ciel c etait l'horizon, les hommes des mineurs de fond.",
     urlLogo: "lens.svg",
   },
   city: {
     name: "Manchester City",
-    description: "ERLING HALLAND",
+    description: "Erling Halland",
     urlLogo: "manchester_city.svg",
   },
   united: {
@@ -44,13 +44,13 @@ const teams = {
     urlLogo: "om.svg",
   },
   psg: {
-    name: "Paris Saint germain",
-    description: "Revons encore de la LDC",
+    name: "Paris Saint Germain",
+    description: "Rêvons encore de la LDC",
     urlLogo: "psg.svg",
   },
   real: {
-    name: "Real de Madrid",
-    description: "On y crois même avec des retraiter et des bléssés",
+    name: "Real Madrid",
+    description: "On y croit même avec des retraités et des bléssés",
     urlLogo: "real.svg",
   },
 };

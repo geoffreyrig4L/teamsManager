@@ -11,15 +11,15 @@ defineProps<{
       <img
         :src="'/images/logos/' + urlLogo"
         alt="My Image"
-        width="30"
+        width="65"
         height="auto"
       />
-      <h1 class="text-2xl">{{ name }}</h1>
+      <h1 class="text-xl font-semibold">{{ name }}</h1>
     </div>
 
     <p class="text-lg">{{ description }}</p>
     <div>
-      <p>Effectif</p>
+      <p class="font-semibold">Effectif</p>
       <ul>
         <li>Aubameyang</li>
       </ul>

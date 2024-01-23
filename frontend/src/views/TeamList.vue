@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TeamContainer from "../container/TeamContainer.vue";
+import TeamContainer from "../components/TeamContainer.vue";
 
 const teams = {
   arsenal: {

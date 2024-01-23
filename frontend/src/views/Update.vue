@@ -56,10 +56,6 @@ const teams = {
 };
 
 const selected = ref({ name: "", description: "", urlLogo: "" });
-
-const test = ref(selected.name);
-
-console.log(test, selected);
 </script>
 
 <template>

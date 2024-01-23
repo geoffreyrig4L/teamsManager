@@ -7,7 +7,7 @@ const route = useRoute();
 
 <template>
   <router-view v-if="route.path == '/login'"></router-view>
-  <Drawer v-if="route.path != '/login'">
+  <Drawer v-else>
     <router-view></router-view>
   </Drawer>
 </template>

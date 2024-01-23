@@ -8,14 +8,40 @@ import Login from "../views/Login.vue";
 const routes = [
   { path: "/", component: TeamList },
   { path: "/login", component: Login },
-  { path: "/create", component: Create },
-  { path: "/update", component: Update },
-  { path: "/delete", component: Delete },
+  {
+    path: "/create",
+    component: Create,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/update",
+    component: Update,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/delete",
+    component: Delete,
+    meta: {
+      requiresAuth: true,
+    },
+  },
 ];
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    next("/login");
+  } else {
+    next();
+  }
 });
 
 export default router;

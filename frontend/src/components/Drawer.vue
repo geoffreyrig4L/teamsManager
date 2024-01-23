@@ -21,7 +21,9 @@
           <h2 className="menu-title">View</h2>
           <ul>
             <li>
-              <router-link to="/"> Teams List </router-link>
+              <router-link to="/" :class="{ active: $route.path == '/' }">
+                Teams List
+              </router-link>
             </li>
           </ul>
         </li>
@@ -29,13 +31,28 @@
           <h2 className="menu-title">Manage</h2>
           <ul>
             <li>
-              <router-link to="/create"> Create Team </router-link>
+              <router-link
+                to="/create"
+                :class="{ active: $route.path == '/create' }"
+              >
+                Create Team
+              </router-link>
             </li>
             <li>
-              <router-link to="/update"> Update Team </router-link>
+              <router-link
+                to="/update"
+                :class="{ active: $route.path == '/update' }"
+              >
+                Update Team
+              </router-link>
             </li>
             <li>
-              <router-link to="/delete"> Delete Team </router-link>
+              <router-link
+                to="/delete"
+                :class="{ active: $route.path == '/delete' }"
+              >
+                Delete Team
+              </router-link>
             </li>
           </ul>
         </li>

@@ -1,15 +1,4 @@
-<script setup lang="ts">
-import { ref } from "vue";
-
-const path = ref(window.location.pathname);
-
-const isTeamList = ref(path.value == "/");
-const isCreateTeam = ref(path.value == "/create");
-const isUpdateTeam = ref(path.value == "/update");
-const isDeleteTeam = ref(path.value == "/delete");
-
-console.log(path);
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="drawer drawer-open">
@@ -32,9 +21,7 @@ console.log(path);
           <h2 className="menu-title">View</h2>
           <ul>
             <li>
-              <router-link :class="{ active: isTeamList }" to="/">
-                Teams List
-              </router-link>
+              <router-link to="/"> Teams List </router-link>
             </li>
           </ul>
         </li>
@@ -42,19 +29,13 @@ console.log(path);
           <h2 className="menu-title">Manage</h2>
           <ul>
             <li>
-              <router-link :class="{ active: isCreateTeam }" to="/create">
-                Create Team
-              </router-link>
+              <router-link to="/create"> Create Team </router-link>
             </li>
             <li>
-              <router-link :class="{ active: isUpdateTeam }" to="/update">
-                Update Team
-              </router-link>
+              <router-link to="/update"> Update Team </router-link>
             </li>
             <li>
-              <router-link :class="{ active: isDeleteTeam }" to="/delete">
-                Delete Team
-              </router-link>
+              <router-link to="/delete"> Delete Team </router-link>
             </li>
           </ul>
         </li>

@@ -18,11 +18,11 @@ Il vous faudra installer le projet. Pour cela, un git clone du projet est néces
 git clone https://github.com/geoffreyrig4L/teamsManager
 ```
 
-### Installation de Docker
+## Installation de Docker
 
 Pour installer Docker, suivez les instructions de la documentation officielle de Docker [:whale: Docker](https://docs.docker.com/get-docker/).
 
-### Installation de NodeJS
+## Installation de NodeJS
 
 Premièrement, vous devez installer Node.js sur votre machine. Vous pouvez le télécharger depuis le site officiel de Node.js. Après avoir téléchargé Node.js, vous pouvez vérifier son installation avec la commande:
 
@@ -50,7 +50,7 @@ npm run dev
 
 Le projet backend est maintenant lancé sur le port 8000.
 
-### Installation de VueJS
+## Installation de VueJS
 
 Pour installer Vue.js, utilisez la commande:
 

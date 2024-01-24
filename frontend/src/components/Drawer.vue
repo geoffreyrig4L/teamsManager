@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useCasdoor } from 'casdoor-vue-sdk';
+import { useCasdoor } from "casdoor-vue-sdk";
 
 const { getSigninUrl } = useCasdoor();
 

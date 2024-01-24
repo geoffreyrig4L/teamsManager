@@ -52,16 +52,16 @@ Le projet backend est maintenant lancé sur le port 8000.
 
 ## Installation de VueJS
 
-Pour installer Vue.js, utilisez la commande:
-
-```bash
-npm install -g @vue/cli
-```
-
-Ensuite, déplacez-vous dans le dossier frontend avec la commande:
+déplacez-vous dans le dossier frontend avec la commande:
 
 ```bash
 cd frontend/
+```
+
+Pour installer Vue.js et ces dépendances, utilisez la commande:
+
+```bash
+npm install
 ```
 
 Enfin, pour lancer le projet frontend, utilisez la commande:

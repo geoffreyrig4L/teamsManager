@@ -25,16 +25,16 @@ test(`TEST (just changing url by router) go to home page with the team list with
   expect(window.location.pathname).toEqual("/");
 });
 
-// test(`TEST (check html loaded) go to home page with the team list without a logged `, async () => {
-//   router.push("/");
+test(`TEST (check html loaded) go to home page with the team list without a logged `, async () => {
+  router.push("/");
 
-//   await router.isReady();
+  await router.isReady();
 
-//   const wrapper = mount(App, {
-//     global: {
-//       plugins: [router],
-//     },
-//   });
+  const wrapper = mount(App, {
+    global: {
+      plugins: [router],
+    },
+  });
 
-//   expect(wrapper.html()).toContain("FC Barcelone");
-// });
+  expect(wrapper.html()).toContain("FC Barcelone");
+});

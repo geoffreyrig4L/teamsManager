@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useCasdoor } from "casdoor-vue-sdk";
 
-const { getSigninUrl } = useCasdoor();
+const casdoor = useCasdoor();
 
 function login() {
-  window.location.href = getSigninUrl();
+  window.location.href = casdoor.getSigninUrl();
 }
 </script>
 

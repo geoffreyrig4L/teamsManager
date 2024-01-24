@@ -1,14 +1,14 @@
-# 🚀 Projet TeamsManager
+# :rocket: Projet TeamsManager
 
 Bienvenue dans la documentation du projet TeamsManager. Ce projet vise à gérer des équipes de football, permettant aux utilisateurs de créer, modifier des équipes, descriptions des clubs, des joueurs, etc. Cependant, certaines fonctionnalités seront modérées par leurs rôles.
 
 ## Technologies utilisées
 
-- [NodeJS](https://nodejs.org/en/)
-- [VueJS](https://vuejs.org/)
-- [MySQL](https://www.mysql.com/fr/)
-- [Docker](https://www.docker.com/)
-- [Casdoor](https://casdoor.org/)
+- :computer: [NodeJS](https://nodejs.org/en/)
+- :art: [VueJS](https://vuejs.org/)
+- :file_folder: [MySQL](https://www.mysql.com/fr/)
+- :whale: [Docker](https://www.docker.com/)
+- :lock: [Casdoor](https://casdoor.org/)
 
 ## Installation du projet
 
@@ -20,7 +20,7 @@ git clone https://github.com/geoffreyrig4L/teamsManager
 
 ### Installation de Docker
 
-Pour installer Docker, suivez les instructions de la documentation officielle de Docker [Docker](https://docs.docker.com/get-docker/).
+Pour installer Docker, suivez les instructions de la documentation officielle de Docker [:whale: Docker](https://docs.docker.com/get-docker/).
 
 ### Installation de NodeJS
 
@@ -72,16 +72,35 @@ npm run dev
 
 Le projet frontend est maintenant lancé sur le port 8080.
 
-##Lancer le conteneur docker de casdoor et remplir la base de donée
+## Lancer le conteneur Docker de Casdoor et remplir la base de données
 
-pull l'image docker de casdoor
-`docker pull casbin/casdoor-all-in-one`
-Lancer le conteneur dockeur et le rattacher a un volume
-`docker run -d -v volume_casdoor:/mnt -p 8000:8000 casbin/casdoor-all-in-one`
-copier le fichier dumpfile.sql dans le volume (/backend/dumpfile.sql)
-`docker cp dumpfile.sql id_conteneur:/mnt`
-Acceder au ficher dumpfile dans le conteneur avec la commande :
-`docker exec -it id_conteneur bash
-cd /mnt`
-Restore la base de donnée
-`mysql -u root -p casdoor < dumpfile.sql`
+Pull l'image Docker de Casdoor:
+
+```bash
+docker pull casbin/casdoor-all-in-one
+```
+
+Lancez le conteneur Docker et attachez-le à un volume:
+
+```bash
+docker run -d -v volume_casdoor:/mnt -p 8000:8000 casbin/casdoor-all-in-one
+```
+
+Copiez le fichier dumpfile.sql dans le volume (backend/dumpfile.sql):
+
+```bash
+docker cp dumpfile.sql id_conteneur:/mnt
+```
+
+Accédez au fichier dumpfile dans le conteneur avec la commande:
+
+```bash
+docker exec -it id_conteneur bash
+cd /mnt
+```
+
+Restaurez la base de données:
+
+```bash
+mysql -u root -p casdoor < dumpfile.sql
+```

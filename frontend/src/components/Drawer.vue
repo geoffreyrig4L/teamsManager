@@ -54,7 +54,7 @@ function login() {
                 Update Team
               </router-link>
             </li>
-            <li>
+            <li :class="{ disabled: true }">
               <router-link
                 to="/delete"
                 :class="{ active: $route.path == '/delete' }"

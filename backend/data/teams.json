@@ -1,0 +1,52 @@
+{
+  "arsenal": {
+    "name": "Arsenal",
+    "description": "L'OM de la première league",
+    "urlLogo": "arsenal.svg"
+  },
+  "barca": {
+    "name": "FC Barcelone",
+    "description": "Le pire club de l'histoire formateur du pire joueur de l'histoire",
+    "urlLogo": "barca.svg"
+  },
+  "bayern": {
+    "name": "Bayern de Munich",
+    "description": "Les puissants en Allemagne",
+    "urlLogo": "bayern.svg"
+  },
+  "lens": {
+    "name": "RC Lens",
+    "description": "Au nord, c'etait les corons, la terre c'etait le charbon, le ciel c'etait l'horizon, les hommes des mineurs de fond.",
+    "urlLogo": "lens.svg"
+  },
+  "city": {
+    "name": "Manchester City",
+    "description": "Erling Haaland",
+    "urlLogo": "manchester_city.svg"
+  },
+  "united": {
+    "name": "Manchester Unity",
+    "description": "City mais en moins bien",
+    "urlLogo": "manchester_united.svg"
+  },
+  "ol": {
+    "name": "Olympique Lyonnais",
+    "description": "Partir d'en bas et rester en bas",
+    "urlLogo": "ol.svg"
+  },
+  "om": {
+    "name": "Olympique de Marseille",
+    "description": "Droit au flop.",
+    "urlLogo": "om.svg"
+  },
+  "psg": {
+    "name": "Paris Saint Germain",
+    "description": "Rêvons plus grand",
+    "urlLogo": "psg.svg"
+  },
+  "real": {
+    "name": "Real Madrid",
+    "description": "On y croit même avec des retraités et des blessés",
+    "urlLogo": "real.svg"
+  }
+}

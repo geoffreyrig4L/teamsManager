@@ -16,7 +16,12 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
 
-      - name: Install Dependencies
+      - name: Install Dependencies for back-end
+        working-directory: ./backend
+        run: npm ci
+      
+      - name: Install Dependencies for front-end
+        working-directory: ./frontend
         run: npm ci
 
       - name: Run Tests for back-end

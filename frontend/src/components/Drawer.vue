@@ -1,4 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useCasdoor } from 'casdoor-vue-sdk';
+
+const { getSigninUrl } = useCasdoor();
+
+function login() {
+  window.location.href = getSigninUrl();
+}
+</script>
 
 <template>
   <div class="drawer drawer-open">
@@ -58,8 +66,8 @@
         </li>
       </ul>
       <div class="absolute bottom-4 left-0 p-4 w-full">
-        <button class="btn btn-ghost w-full text-xl">
-          Logout
+        <button class="btn btn-ghost w-full text-xl" @click="login">
+          Login
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

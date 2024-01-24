@@ -15,6 +15,7 @@
 const express = require("express");
 const cors = require("cors");
 const TeamRoutes = require("./routes/TeamRoutes");
+const bodyParser= require("body-parser");
 
 
 
@@ -22,11 +23,11 @@ const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:9000",
+  origin: "http://localhost:9000",
     credentials: true,
   })
 );
-
+app.use(express.json());
 
 TeamRoutes({app});
 

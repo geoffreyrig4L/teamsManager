@@ -18,10 +18,8 @@ const TeamRoutes = ({app}) => {
   app.get("/teams",async (req,res) => {
     const result = teams;
 
-    console.log(result)
-
-    res.status(200)
-    res.send(result)
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).json(result)
   })
 
 }

@@ -1,6 +1,8 @@
 import { test, expect } from "vitest";
+import { mount } from "@vue/test-utils";
 import { createRouter, createWebHistory } from "vue-router";
 import { routes } from "../router";
+import App from "../App.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -15,10 +17,24 @@ router.beforeEach((to, from, next) => {
   }
 });
 
-test(`TEST go to home page with the team list without a logged `, async () => {
+test(`TEST (just changing url by router) go to home page with the team list without a logged `, async () => {
   router.push("/");
 
   await router.isReady();
 
   expect(window.location.pathname).toEqual("/");
 });
+
+// test(`TEST (check html loaded) go to home page with the team list without a logged `, async () => {
+//   router.push("/");
+
+//   await router.isReady();
+
+//   const wrapper = mount(App, {
+//     global: {
+//       plugins: [router],
+//     },
+//   });
+
+//   expect(wrapper.html()).toContain("FC Barcelone");
+// });

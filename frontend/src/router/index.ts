@@ -6,27 +6,29 @@ import Delete from "../views/Delete.vue";
 import Login from "../views/Login.vue";
 
 const routes = [
-  { path: "/", component: TeamList },
+  { path: "/", component: TeamList, props: true },
   { path: "/login", component: Login },
   {
     path: "/create",
     component: Create,
     meta: {
-      requiresAuth: true,
+      requiresAuth: false,
     },
   },
   {
     path: "/update",
     component: Update,
+    props: true,
     meta: {
-      requiresAuth: true,
+      requiresAuth: false,
     },
   },
   {
     path: "/delete",
     component: Delete,
+    props: true,
     meta: {
-      requiresAuth: true,
+      requiresAuth: false,
     },
   },
 ];

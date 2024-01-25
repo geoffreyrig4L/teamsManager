@@ -9,7 +9,6 @@ const config = {
   clientId: "9ffd3710dd305f0c5ffb",
   organizationName: "golmon",
   appName: "golmon_app",
-  // redirectPath: "/callback",
 };
 
 const app = createApp(App);

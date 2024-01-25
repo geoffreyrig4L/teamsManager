@@ -1,7 +1,25 @@
 <script setup lang="ts">
 import { useCasdoor } from "casdoor-vue-sdk";
+import { onMounted } from "vue";
+import axios from "axios";
 
 const casdoor = useCasdoor();
+
+onMounted(() => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const authorizationCode = urlParams.get('code');
+  if (authorizationCode) {
+    const code : string = authorizationCode;
+    try {
+      axios.get(`http://localhost:8080/getToken?code=${code}`).then((response : any) => {
+        localStorage.setItem("token", response.data.token);
+      })
+    } catch(e) {
+      console.log(e);
+    }
+  }
+});
+
 
 function login() {
   window.location.href = casdoor.getSigninUrl();

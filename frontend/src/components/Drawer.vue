@@ -1,28 +1,6 @@
 <script setup lang="ts">
-import { useCasdoor } from "casdoor-vue-sdk";
-import { onMounted } from "vue";
-import axios from "axios";
-
-const casdoor = useCasdoor();
-
-onMounted(() => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const authorizationCode = urlParams.get('code');
-  if (authorizationCode) {
-    const code : string = authorizationCode;
-    try {
-      axios.get(`http://localhost:8080/getToken?code=${code}`).then((response : any) => {
-        localStorage.setItem("token", response.data.token);
-      })
-    } catch(e) {
-      console.log(e);
-    }
-  }
-});
-
-
-function login() {
-  window.location.href = casdoor.getSigninUrl();
+function logout() {
+  localStorage.removeItem("token");
 }
 </script>
 
@@ -84,8 +62,8 @@ function login() {
         </li>
       </ul>
       <div class="absolute bottom-4 left-0 p-4 w-full">
-        <button class="btn btn-ghost w-full text-xl" @click="login">
-          Login
+        <button class="btn btn-ghost w-full text-xl" @click="logout">
+          Logout
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

@@ -34,6 +34,36 @@ const CasdoorRoutes = ({ app }) => {
         .json({ error: "Erreur lors de la récupération du token" });
     }
   });
+
+  app.get("/verifyToken", async (req, res) => {
+    const token = req.query.token;
+    const tokenTypeHint = "access_token";
+
+    if (!token) {
+      return res.status(400).json({ error: "Le token est requis." });
+    }
+
+    const authorizationHeader = `Basic ${Buffer.from(
+      `${casdoorConfig.clientId}:${casdoorConfig.clientSecret}`
+    ).toString("base64")}`;
+
+    try {
+      const response = await axios.post(
+        `${casdoorConfig.serverUrl}/api/login/oauth/introspect`,
+        `token=${token}&token_type_hint=${tokenTypeHint}`,
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            Authorization: authorizationHeader,
+          },
+        }
+      );
+
+      res.json(response.data.active);
+    } catch (error) {
+      res.status(500).json({ error: "Erreur lors de la validation du token" });
+    }
+  });
 };
 
 module.exports = CasdoorRoutes;

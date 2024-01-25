@@ -9,7 +9,7 @@ const router = createRouter({
   routes: routes,
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     next("/login");
   } else {
@@ -17,7 +17,7 @@ router.beforeEach((to, from, next) => {
   }
 });
 
-test(`TEST (just changing url by router) go to home page with the team list without a logged `, async () => {
+test(`TEST (just changing url in router) go to home page with the team list without a logged `, async () => {
   router.push("/");
 
   await router.isReady();
@@ -36,5 +36,71 @@ test(`TEST (check html loaded) go to home page with the team list without a logg
     },
   });
 
-  expect(wrapper.html()).toContain("FC Barcelone");
+  expect(wrapper.html()).toContain("Olympique de Marseille");
+});
+
+test(`TEST (just changing url in router) go to create team page with the team list without a logged `, async () => {
+  router.push("/create");
+
+  await router.isReady();
+
+  expect(window.location.pathname).not.toEqual("/create");
+});
+
+test(`TEST (check html loaded) go to create team page with the team list without a logged `, async () => {
+  router.push("/create");
+
+  await router.isReady();
+
+  const wrapper = mount(App, {
+    global: {
+      plugins: [router],
+    },
+  });
+
+  expect(wrapper.html()).toContain("Login");
+});
+
+test(`TEST (just changing url in router) go to update team page with the team list without a logged `, async () => {
+  router.push("/update");
+
+  await router.isReady();
+
+  expect(window.location.pathname).not.toEqual("/update");
+});
+
+test(`TEST (check html loaded) go to update team page with the team list without a logged `, async () => {
+  router.push("/update");
+
+  await router.isReady();
+
+  const wrapper = mount(App, {
+    global: {
+      plugins: [router],
+    },
+  });
+
+  expect(wrapper.html()).toContain("Login");
+});
+
+test(`TEST (just changing url in router) go to delete team page with the team list without a logged `, async () => {
+  router.push("/delete");
+
+  await router.isReady();
+
+  expect(window.location.pathname).not.toEqual("/delete");
+});
+
+test(`TEST (check html loaded) go to delete team page with the team list without a logged `, async () => {
+  router.push("/delete");
+
+  await router.isReady();
+
+  const wrapper = mount(App, {
+    global: {
+      plugins: [router],
+    },
+  });
+
+  expect(wrapper.html()).toContain("Login");
 });

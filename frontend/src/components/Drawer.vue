@@ -36,7 +36,7 @@ function login() {
       <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
         <div class="flex items-center gap-4 my-4">
           <img
-            src="/images/logos/om.svg"
+            src="/logos/om.svg"
             alt="My Image"
             width="50"
             height="auto"

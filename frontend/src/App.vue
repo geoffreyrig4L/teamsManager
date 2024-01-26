@@ -22,16 +22,6 @@ onUpdated(() => {
   } catch (e) {
     console.log(e);
   }
-
-  if (token) {
-    axios
-      .get(`http://localhost:8080/getUserInfo?token=${token}`)
-      .then((response: any) => {
-        const permissions = response.permissions;
-
-        console.log(permissions);
-      });
-  }
 });
 
 onMounted(() => {

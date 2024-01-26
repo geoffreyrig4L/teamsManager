@@ -4,6 +4,7 @@ import Create from "../views/Create.vue";
 import Update from "../views/Update.vue";
 import Delete from "../views/Delete.vue";
 import Login from "../views/Login.vue";
+import axios from "axios";
 
 const routes = [
   { path: "/", component: TeamList, props: true },
@@ -14,6 +15,7 @@ const routes = [
     component: Create,
     meta: {
       requiresAuth: true,
+      canCreate: true,
     },
   },
   {
@@ -22,6 +24,7 @@ const routes = [
     props: true,
     meta: {
       requiresAuth: true,
+      canUpdate: true,
     },
   },
   {
@@ -30,6 +33,7 @@ const routes = [
     props: true,
     meta: {
       requiresAuth: true,
+      canDelete: true,
     },
   },
 ];
@@ -41,8 +45,45 @@ const router = createRouter({
 
 router.beforeEach((to, _, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {
-    if (localStorage.getItem("token")) {
-      next();
+    const token = localStorage.getItem("token");
+    if (token) {
+      if (to.matched.some((record) => record.meta.canCreate)) {
+        axios
+          .get(
+            `http://localhost:8080/isPermited?token=${token}&isPermission=canCreate`
+          )
+          .then((res) => {
+            if (res.data.authorized == true) {
+              next();
+            } else {
+              next("/");
+            }
+          });
+      } else if (to.matched.some((record) => record.meta.canUpdate)) {
+        axios
+          .get(
+            `http://localhost:8080/isPermited?token=${token}&isPermission=canUpdate`
+          )
+          .then((res) => {
+            if (res.data.authorized == true) {
+              next();
+            } else {
+              next("/");
+            }
+          });
+      } else if (to.matched.some((record) => record.meta.canDelete)) {
+        axios
+          .get(
+            `http://localhost:8080/isPermited?token=${token}&isPermission=canDelete`
+          )
+          .then((res) => {
+            if (res.data.authorized == true) {
+              next();
+            } else {
+              next("/");
+            }
+          });
+      }
     } else {
       next("/");
     }

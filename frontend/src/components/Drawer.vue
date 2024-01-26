@@ -35,11 +35,7 @@ defineProps<{
             </li>
           </ul>
         </li>
-<<<<<<< HEAD
-        <li >
-=======
         <li v-if="token">
->>>>>>> 46baaffeac93dec4db18518f5c6faaf30521f4c9
           <h2 className="menu-title">Manage</h2>
           <ul>
             <li>

@@ -13,7 +13,7 @@ const routes = [
     path: "/create",
     component: Create,
     meta: {
-      requiresAuth: false,
+      requiresAuth: true,
     },
   },
   {
@@ -21,7 +21,7 @@ const routes = [
     component: Update,
     props: true,
     meta: {
-      requiresAuth: false,
+      requiresAuth: true,
     },
   },
   {
@@ -29,7 +29,7 @@ const routes = [
     component: Delete,
     props: true,
     meta: {
-      requiresAuth: false,
+      requiresAuth: true,
     },
   },
 ];
@@ -41,7 +41,11 @@ const router = createRouter({
 
 router.beforeEach((to, _, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {
-    next("/login");
+    if (localStorage.getItem("token")) {
+      next();
+    } else {
+      next("/");
+    }
   } else {
     next();
   }

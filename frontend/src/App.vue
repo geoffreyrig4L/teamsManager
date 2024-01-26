@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import axios from "axios";
 import Drawer from "./components/Drawer.vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { onMounted, onUpdated, ref } from "vue";
 
 const tokenRef = ref(null);
+const router = useRouter();
 
 onUpdated(() => {
   const token = localStorage.getItem("token") ?? "";
@@ -15,6 +16,7 @@ onUpdated(() => {
         if (!response.data.active) {
           localStorage.removeItem("token");
           tokenRef.value = null;
+          router.push("/");
         }
       });
   } catch (e) {
@@ -43,6 +45,8 @@ onMounted(() => {
 function logout() {
   localStorage.removeItem("token");
   tokenRef.value = null;
+
+  router.push("/");
 }
 
 const route = useRoute();

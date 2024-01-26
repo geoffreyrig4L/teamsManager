@@ -128,7 +128,7 @@ Les tests sont automatisés grâce à GitHub Actions au moment du push sur la br
 
 ## Explication du test back-end
 
-Le seul test back-end à valider permet de vérifier que le parsing du fichier json contenant les données fonctionne.
+Le seul [test](https://github.com/geoffreyrig4L/teamsManager/blob/main/backend/tests/json.test.js) back-end à valider permet de vérifier que le parsing du fichier json contenant les données fonctionne.
 
 ```js
 test('JSON parsing', () => {
@@ -240,7 +240,7 @@ test("change location to '/create' via routing", async () => {
 
 Le test prend en entrée l'url du navigateur après la redirection, et on attend que l'url soit /login et non /create, car l'utilisateur n'est pas connecté.
 
-Le test de rendu de la page de création
+[Le test de rendu de la page de création](https://github.com/geoffreyrig4L/teamsManager/blob/main/frontend/src/test/router.test.ts#L86)
 
 ```js
 test("try to renders Create component via routing", async () => {
@@ -276,7 +276,7 @@ Le test prend en entrée le component généré par Vue sensé contenir la page 
 
 - La page de mise à jour d'une équipe
 
-Le test de redirection vers la page de mise à jour d'une équipe
+[Le test de redirection vers la page de mise à jour d'une équipe](https://github.com/geoffreyrig4L/teamsManager/blob/main/frontend/src/test/router.test.ts#L116)
 
 ```js
 test("change location to '/update' via routing", async () => {
@@ -304,7 +304,7 @@ test("change location to '/update' via routing", async () => {
 
 Le test prend en entrée l'url du navigateur après la redirection, et on attend que l'url soit /login et non /update, car l'utilisateur n'est pas connecté.
 
-Le test de rendu de la page de mise à jour d'une équipe
+[Le test de rendu de la page de mise à jour d'une équipe](https://github.com/geoffreyrig4L/teamsManager/blob/main/frontend/src/test/router.test.ts#L138)
 
 ```js
 test("try to renders Update component via routing", async () => {
@@ -340,7 +340,7 @@ test("try to renders Update component via routing", async () => {
 
 - La page de suppression d'une équipe
 
-Le test de redirection vers la page de suppression d'une équipe
+[Le test de redirection vers la page de suppression d'une équipe](https://github.com/geoffreyrig4L/teamsManager/blob/main/frontend/src/test/router.test.ts#L168)
 
 ```js
 test("change location to '/delete' via routing", async () => {
@@ -368,7 +368,7 @@ test("change location to '/delete' via routing", async () => {
 
 Le test prend en entrée l'url du navigateur après la redirection, et on attend que l'url soit /login et non /delete, car l'utilisateur n'est pas connecté.
 
-Le test de rendu de la page de suppression d'une équipe
+[Le test de rendu de la page de suppression d'une équipe](https://github.com/geoffreyrig4L/teamsManager/blob/main/frontend/src/test/router.test.ts#L190)
 
 ```js
 test("try to renders Delete component via routing", async () => {
@@ -406,7 +406,7 @@ Le test prend en entrée le component généré par Vue sensé contenir la page 
 
 - La page d'accueil
 
-Le test de redirection vers la page d'accueil
+[Le test de redirection vers la page d'accueil](https://github.com/geoffreyrig4L/teamsManager/blob/main/frontend/src/test/router.test.ts#L222)
 
 ```js
 test("change location to '/' via routing and auth", async () => {
@@ -437,7 +437,7 @@ test("change location to '/' via routing and auth", async () => {
 
 Le test prend en entrée l'url actuelle du navigateur sensé avoir été redirigé vers l'accueil, et attend le chemin / car c'est le chemin de l'accueil du site
 
-Le test de rendu de la liste des équipes
+[Le test de rendu de la liste des équipes](https://github.com/geoffreyrig4L/teamsManager/blob/main/frontend/src/test/router.test.ts#L247)
 
 ```js
 test("try to renders TeamList component via routing and auth", async () => {
@@ -476,7 +476,7 @@ Le test prend en entrée le component généré par Vue sensé contenir la liste
 
 - La page de création d'une équipe
 
-[Le test de redirection vers la page de création d'équipe](https://github.com/geoffreyrig4L/teamsManager/blob/main/frontend/src/test/router.test.ts#L64)
+[Le test de redirection vers la page de création d'équipe](https://github.com/geoffreyrig4L/teamsManager/blob/main/frontend/src/test/router.test.ts#L280)
 
 ```js
 test("change location to '/create' via routing and auth", async () => {
@@ -507,7 +507,7 @@ test("change location to '/create' via routing and auth", async () => {
 
 Le test prend en entrée l'url du navigateur après la redirection, et on attend que l'url soit /Create.
 
-Le test de rendu de la page de création
+[Le test de rendu de la page de création](https://github.com/geoffreyrig4L/teamsManager/blob/main/frontend/src/test/router.test.ts#L305)
 
 ```js
 test("try to renders Create component via routing and auth", async () => {
@@ -546,7 +546,7 @@ Le test prend en entrée le component généré par Vue sensé contenir la page 
 
 - La page de mise à jour d'une équipe
 
-Le test de redirection vers la page de mise à jour d'une équipe
+[Le test de redirection vers la page de mise à jour d'une équipe](https://github.com/geoffreyrig4L/teamsManager/blob/main/frontend/src/test/router.test.ts#L338)
 
 ```js
 test("change location to '/update' via routing and auth", async () => {
@@ -577,7 +577,7 @@ test("change location to '/update' via routing and auth", async () => {
 
 Le test prend en entrée l'url du navigateur après la redirection, et on attend que l'url soit /update.
 
-Le test de rendu de la page de mise à jour d'une équipe
+[Le test de rendu de la page de mise à jour d'une équipe](https://github.com/geoffreyrig4L/teamsManager/blob/main/frontend/src/test/router.test.ts#L363)
 
 ```js
 test("try to renders Update component via routing and auth", async () => {
@@ -616,7 +616,7 @@ Le test prend en entrée le component généré par Vue sensé contenir la page 
 
 - La page de suppression d'une équipe
 
-Le test de redirection vers la page de suppression d'une équipe
+[Le test de redirection vers la page de suppression d'une équipe](https://github.com/geoffreyrig4L/teamsManager/blob/main/frontend/src/test/router.test.ts#L396)
 
 ```js
 test("change location to '/delete' via routing and auth", async () => {
@@ -647,7 +647,7 @@ test("change location to '/delete' via routing and auth", async () => {
 
 Le test prend en entrée l'url du navigateur après la redirection, et on attend que l'url soit /delete.
 
-Le test de rendu de la page de suppression d'une équipe
+[Le test de rendu de la page de suppression d'une équipe](https://github.com/geoffreyrig4L/teamsManager/blob/main/frontend/src/test/router.test.ts#L421)
 
 ```js
 test("try to renders Update component via routing and auth", async () => {

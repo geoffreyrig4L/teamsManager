@@ -104,3 +104,24 @@ Restaurez la base de données:
 ```bash
 mysql -u root -p casdoor < dumpfile.sql
 ```
+
+## Lancement des tests unitaires et fonctionnels du projet backend
+
+Pour lancer les tests unitaires et fonctionnels du projet backend, utilisez la commande:
+
+```bash
+npm run test
+```
+
+## Lancement des tests unitaires et fonctionnels du projet frontend
+
+Pour lancer les tests unitaires et fonctionnels du projet frontend, utilisez la commande:
+
+```bash
+npm run test
+```
+
+Un fichier de tests sur les routes vérifie si le changement de route est bien fonctionnel et si le bon composant est appelé en fonction de la route.
+Le composant LoginVue est unique aux tests.
+
+Les tests sont automatisés grâce à GitHub Actions au moment du push sur la branche principale.

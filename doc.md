@@ -1,8 +1,8 @@
-## Ceci est la doc explicative des test et de l'intégration de ses tests dans github CI
+## Ceci est la documentation explicative des tests et de l'intégration de ces tests dans Github CI
 
 ## Pour init le projet suivre le README.md
 
-## Pour vous connecter à l'application utilisé les uers définie dans casdoor_user.md
+## Pour vous connecter à l'application, utilisez les users définient dans casdoor_user.md
 
 ## Explication du test back-end
 

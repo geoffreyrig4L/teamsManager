@@ -14,9 +14,7 @@ onUpdated(() => {
       .get(`http://localhost:8080/verifyToken?token=${token}`)
       .then((response: any) => {
         if (!response.data.active) {
-          localStorage.removeItem("token");
-          tokenRef.value = null;
-          router.push("/");
+          logout()
         }
       });
   } catch (e) {
@@ -45,7 +43,6 @@ onMounted(() => {
 function logout() {
   localStorage.removeItem("token");
   tokenRef.value = null;
-
   router.push("/");
 }
 
@@ -62,8 +59,6 @@ const fetchData = async () => {
 };
 
 onMounted(fetchData);
-
-console.log(tokenRef);
 </script>
 
 <template>

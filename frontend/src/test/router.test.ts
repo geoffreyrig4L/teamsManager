@@ -418,7 +418,7 @@ describe("Delete Page with auth", () => {
     expect(window.location.pathname).toBe("/delete");
   });
 
-  test("try to renders Update component via routing and auth", async () => {
+  test("try to renders Delete component via routing and auth", async () => {
     const router = createRouter({
       history: createWebHistory(),
       routes: routes,
@@ -437,6 +437,204 @@ describe("Delete Page with auth", () => {
     });
 
     router.push({ path: "/delete", query: { auth: 1 } });
+
+    await router.isReady();
+
+    const wrapper = mount(App, {
+      global: {
+        plugins: [router],
+      },
+    });
+
+    expect(wrapper.findComponent(Delete).exists()).toBe(true);
+  });
+});
+
+describe("Create Page with auth and permissions", () => {
+  test("change location to '/create' via routing and auth and permissions", async () => {
+    const router = createRouter({
+      history: createWebHistory(),
+      routes: routes,
+    });
+
+    router.beforeEach((to, _, next) => {
+      if (to.matched.some((record) => record.meta.requiresAuth)) {
+        if (to.query.auth) {
+          if (to.matched.some((record) => record.meta.canCreate)) {
+            if (to.query.canCreate) {
+              next();
+            }
+          }
+        } else {
+          next("/login");
+        }
+      } else {
+        next();
+      }
+    });
+
+    router.push({ path: "/create", query: { auth: 1, canCreate: 1 } });
+
+    await router.isReady();
+
+    expect(window.location.pathname).toBe("/create");
+  });
+
+  test("try to renders Create component via routing and auth and permissions", async () => {
+    const router = createRouter({
+      history: createWebHistory(),
+      routes: routes,
+    });
+
+    router.beforeEach((to, _, next) => {
+      if (to.matched.some((record) => record.meta.requiresAuth)) {
+        if (to.query.auth) {
+          if (to.matched.some((record) => record.meta.canCreate)) {
+            if (to.query.canCreate) {
+              next();
+            }
+          }
+        } else {
+          next("/login");
+        }
+      } else {
+        next();
+      }
+    });
+
+    router.push({ path: "/create", query: { auth: 1, canCreate: 1 } });
+
+    await router.isReady();
+
+    const wrapper = mount(App, {
+      global: {
+        plugins: [router],
+      },
+    });
+
+    expect(wrapper.findComponent(Create).exists()).toBe(true);
+  });
+});
+
+describe("Update Page with auth and permissions", () => {
+  test("change location to '/update' via routing and auth", async () => {
+    const router = createRouter({
+      history: createWebHistory(),
+      routes: routes,
+    });
+
+    router.beforeEach((to, _, next) => {
+      if (to.matched.some((record) => record.meta.requiresAuth)) {
+        if (to.query.auth) {
+          if (to.matched.some((record) => record.meta.canUpdate)) {
+            if (to.query.canUpdate) {
+              next();
+            }
+          }
+        } else {
+          next("/login");
+        }
+      } else {
+        next();
+      }
+    });
+
+    router.push({ path: "/update", query: { auth: 1, canUpdate: 1 } });
+
+    await router.isReady();
+
+    expect(window.location.pathname).toBe("/update");
+  });
+
+  test("try to renders Update component via routing and auth", async () => {
+    const router = createRouter({
+      history: createWebHistory(),
+      routes: routes,
+    });
+
+    router.beforeEach((to, _, next) => {
+      if (to.matched.some((record) => record.meta.requiresAuth)) {
+        if (to.query.auth) {
+          if (to.matched.some((record) => record.meta.canUpdate)) {
+            if (to.query.canUpdate) {
+              next();
+            }
+          }
+        } else {
+          next("/login");
+        }
+      } else {
+        next();
+      }
+    });
+
+    router.push({ path: "/update", query: { auth: 1, canUpdate: 1 } });
+
+    await router.isReady();
+
+    const wrapper = mount(App, {
+      global: {
+        plugins: [router],
+      },
+    });
+
+    expect(wrapper.findComponent(Update).exists()).toBe(true);
+  });
+});
+
+describe("Delete Page with auth and permissions", () => {
+  test("change location to '/create' via routing and auth and permissions", async () => {
+    const router = createRouter({
+      history: createWebHistory(),
+      routes: routes,
+    });
+
+    router.beforeEach((to, _, next) => {
+      if (to.matched.some((record) => record.meta.requiresAuth)) {
+        if (to.query.auth) {
+          if (to.matched.some((record) => record.meta.canDelete)) {
+            if (to.query.canDelete) {
+              next();
+            }
+          }
+        } else {
+          next("/login");
+        }
+      } else {
+        next();
+      }
+    });
+
+    router.push({ path: "/delete", query: { auth: 1, canDelete: 1 } });
+
+    await router.isReady();
+
+    expect(window.location.pathname).toBe("/delete");
+  });
+
+  test("try to renders Delete component via routing and auth and permissions", async () => {
+    const router = createRouter({
+      history: createWebHistory(),
+      routes: routes,
+    });
+
+    router.beforeEach((to, _, next) => {
+      if (to.matched.some((record) => record.meta.requiresAuth)) {
+        if (to.query.auth) {
+          if (to.matched.some((record) => record.meta.canDelete)) {
+            if (to.query.canDelete) {
+              next();
+            }
+          }
+        } else {
+          next("/login");
+        }
+      } else {
+        next();
+      }
+    });
+
+    router.push({ path: "/delete", query: { auth: 1, canDelete: 1 } });
 
     await router.isReady();
 

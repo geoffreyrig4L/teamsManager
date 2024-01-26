@@ -17,10 +17,22 @@ onUpdated(() => {
           localStorage.removeItem("token");
           tokenRef.value = false;
           router.push("/");
+        } else if (response.data.active && tokenRef.value == false) {
+          tokenRef.value = true;
         }
       });
   } catch (e) {
     console.log(e);
+  }
+
+  if (token) {
+    axios
+      .get(`http://localhost:8080/getUserInfo?token=${token}`)
+      .then((response: any) => {
+        const permissions = response.permissions;
+
+        console.log(permissions);
+      });
   }
 });
 

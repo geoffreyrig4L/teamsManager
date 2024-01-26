@@ -22,7 +22,12 @@ defineProps<{
     <div class="drawer-side">
       <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
         <div class="flex items-center gap-4 my-4">
-          <img src="/logos/om.svg" alt="My Image" width="50" height="auto" />
+          <img
+            :src="token ? '/logos/om.svg' : '/logos/arsenal.svg'"
+            alt="My Image"
+            width="50"
+            height="auto"
+          />
           <h1 class="text-2xl font-bold">Team Manager</h1>
         </div>
         <li>

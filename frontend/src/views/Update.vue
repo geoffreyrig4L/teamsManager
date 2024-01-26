@@ -19,14 +19,14 @@ const selected = ref({ name: "", description: "", urlLogo: "" });
     <div
       class="bg-base-300 shadow p-4 w-[50rem] rounded-box flex flex-col gap-4"
     >
-      <h1 class="text-2xl font-bold">Update Team</h1>
+      <h1 class="text-2xl font-bold">Modifier une équipe</h1>
       <div class="flex justify-center">
         <select
           className="select select-primary w-full max-w-lg"
           v-model="selected"
         >
           <option disabled :value="{ name: '', description: '', urlLogo: '' }">
-            Select a team
+            Sélectionner une équipe
           </option>
           <option v-for="value in teams" :value="value">
             {{ value.name }}
@@ -37,7 +37,7 @@ const selected = ref({ name: "", description: "", urlLogo: "" });
       <div className="flex flex-col gap-6">
         <label className="form-control w-full max-w-md">
           <div className="label">
-            <span className="label-text text-lg">Team name :</span>
+            <span className="label-text text-lg opacity-45 font-semibold italic">Nom :</span>
           </div>
           <input
             type="text"
@@ -47,7 +47,7 @@ const selected = ref({ name: "", description: "", urlLogo: "" });
         </label>
         <label className="form-control w-full max-w-md">
           <div className="label">
-            <span className="label-text text-lg">Team description :</span>
+            <span className="label-text text-lg opacity-45 font-semibold italic">Description :</span>
           </div>
           <textarea
             className="textarea textarea-primary textarea-lg w-full max-w-md"
@@ -56,8 +56,8 @@ const selected = ref({ name: "", description: "", urlLogo: "" });
         </label>
         <label className="form-control w-full max-w-md">
           <div className="label">
-            <span className="label-text text-lg"
-              >Team logo : {{ selected.urlLogo }}</span
+            <span className="label-text text-lg opacity-45 font-semibold italic"
+              >Logo : {{ selected.urlLogo }}</span
             >
           </div>
           <input
@@ -81,7 +81,7 @@ const selected = ref({ name: "", description: "", urlLogo: "" });
                 d="m4.5 12.75 6 6 9-13.5"
               />
             </svg>
-            Update
+            Mettre à jour
           </button>
         </div>
       </div>

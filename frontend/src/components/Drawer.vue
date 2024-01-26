@@ -8,7 +8,7 @@ function login() {
 }
 
 defineProps<{
-  token?: any;
+  token?: boolean;
   logout?: any;
 }>();
 </script>

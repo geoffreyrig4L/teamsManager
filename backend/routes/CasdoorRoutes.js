@@ -59,7 +59,7 @@ const CasdoorRoutes = ({ app }) => {
         }
       );
 
-      res.json(response.data.active);
+      res.json(response.data);
     } catch (error) {
       res.status(500).json({ error: "Erreur lors de la validation du token" });
     }

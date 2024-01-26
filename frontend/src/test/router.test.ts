@@ -517,7 +517,7 @@ describe("Create Page with auth and permissions", () => {
 });
 
 describe("Update Page with auth and permissions", () => {
-  test("change location to '/update' via routing and auth", async () => {
+  test("change location to '/update' via routing and auth and permissions", async () => {
     const router = createRouter({
       history: createWebHistory(),
       routes: routes,
@@ -546,7 +546,7 @@ describe("Update Page with auth and permissions", () => {
     expect(window.location.pathname).toBe("/update");
   });
 
-  test("try to renders Update component via routing and auth", async () => {
+  test("try to renders Update component via routing and auth and permissions", async () => {
     const router = createRouter({
       history: createWebHistory(),
       routes: routes,

@@ -1,18 +1,23 @@
+## Ceci est la doc explicative des test et de l'intégration de ses tests dans github CI
+
+## Pour init le projet suivre le README.md
+
+## Pour vous connecter à l'application utilisé les uers définie dans casdoor_user.md
 
 ## Explication du test back-end
 
 Le seul [test](https://github.com/geoffreyrig4L/teamsManager/blob/main/backend/tests/json.test.js) back-end à valider permet de vérifier que le parsing du fichier json contenant les données fonctionne.
 
 ```js
-test('JSON parsing', () => {
-  
-    let json = require("../data/teams.json");
-    const expected = JSON.stringify({name: 'Paris Saint Germain',
-    description: 'Rêvons plus grand',
-    urlLogo: 'psg.svg'});
-    expect(JSON.stringify(json.psg)).toBe(expected);
-    
-})
+test("JSON parsing", () => {
+  let json = require("../data/teams.json");
+  const expected = JSON.stringify({
+    name: "Paris Saint Germain",
+    description: "Rêvons plus grand",
+    urlLogo: "psg.svg",
+  });
+  expect(JSON.stringify(json.psg)).toBe(expected);
+});
 ```
 
 Il prend comme entrée de validation l'objet représentant l'équipe du PSG dans le fichier json parsé stringifié. Il est attendu un objet JSON instancié stringifié.
@@ -21,31 +26,31 @@ Il prend comme entrée de validation l'objet représentant l'équipe du PSG dans
 
 Il y a 8 sections de test pour le front-end
 
-- La section de la page d'accueil 
+- La section de la page d'accueil
 
 [Le test de redirection vers la page d'accueil](https://github.com/geoffreyrig4L/teamsManager/blob/main/frontend/src/test/router.test.ts#L14)
 
 ```js
 test("change location to '/' via routing", async () => {
-    const router = createRouter({
-      history: createWebHistory(),
-      routes: routes,
-    });
-
-    router.beforeEach((to, _, next) => {
-      if (to.matched.some((record) => record.meta.requiresAuth)) {
-        next("/login");
-      } else {
-        next();
-      }
-    });
-
-    router.push("/");
-
-    await router.isReady();
-
-    expect(window.location.pathname).toBe("/");
+  const router = createRouter({
+    history: createWebHistory(),
+    routes: routes,
   });
+
+  router.beforeEach((to, _, next) => {
+    if (to.matched.some((record) => record.meta.requiresAuth)) {
+      next("/login");
+    } else {
+      next();
+    }
+  });
+
+  router.push("/");
+
+  await router.isReady();
+
+  expect(window.location.pathname).toBe("/");
+});
 ```
 
 Le test prend en entrée l'url actuelle du navigateur sensé avoir été redirigé vers l'accueil, et attend le chemin / car c'est le chemin de l'accueil du site
@@ -54,31 +59,31 @@ Le test prend en entrée l'url actuelle du navigateur sensé avoir été redirig
 
 ```js
 test("try to renders TeamList component via routing", async () => {
-    const router = createRouter({
-      history: createWebHistory(),
-      routes: routes,
-    });
-
-    router.beforeEach((to, _, next) => {
-      if (to.matched.some((record) => record.meta.requiresAuth)) {
-        next("/login");
-      } else {
-        next();
-      }
-    });
-
-    router.push("/");
-
-    await router.isReady();
-
-    const wrapper = mount(App, {
-      global: {
-        plugins: [router],
-      },
-    });
-
-    expect(wrapper.findComponent(TeamList).exists()).toBe(true);
+  const router = createRouter({
+    history: createWebHistory(),
+    routes: routes,
   });
+
+  router.beforeEach((to, _, next) => {
+    if (to.matched.some((record) => record.meta.requiresAuth)) {
+      next("/login");
+    } else {
+      next();
+    }
+  });
+
+  router.push("/");
+
+  await router.isReady();
+
+  const wrapper = mount(App, {
+    global: {
+      plugins: [router],
+    },
+  });
+
+  expect(wrapper.findComponent(TeamList).exists()).toBe(true);
+});
 ```
 
 Le test prend en entrée le component généré par Vue sensé contenir la liste des équipes et vérifie qu'il a été généré par Vue
@@ -89,26 +94,26 @@ Le test prend en entrée le component généré par Vue sensé contenir la liste
 
 ```js
 test("change location to '/create' via routing", async () => {
-    const router = createRouter({
-      history: createWebHistory(),
-      routes: routes,
-    });
-
-    router.beforeEach((to, _, next) => {
-      if (to.matched.some((record) => record.meta.requiresAuth)) {
-        next("/login");
-      } else {
-        next();
-      }
-    });
-
-    router.push("/create");
-
-    await router.isReady();
-
-    expect(window.location.pathname).not.toBe("/create");
-    expect(window.location.pathname).toBe("/login");
+  const router = createRouter({
+    history: createWebHistory(),
+    routes: routes,
   });
+
+  router.beforeEach((to, _, next) => {
+    if (to.matched.some((record) => record.meta.requiresAuth)) {
+      next("/login");
+    } else {
+      next();
+    }
+  });
+
+  router.push("/create");
+
+  await router.isReady();
+
+  expect(window.location.pathname).not.toBe("/create");
+  expect(window.location.pathname).toBe("/login");
+});
 ```
 
 Le test prend en entrée l'url du navigateur après la redirection, et on attend que l'url soit /login et non /create, car l'utilisateur n'est pas connecté.
@@ -117,32 +122,32 @@ Le test prend en entrée l'url du navigateur après la redirection, et on attend
 
 ```js
 test("try to renders Create component via routing", async () => {
-    const router = createRouter({
-      history: createWebHistory(),
-      routes: routes,
-    });
-
-    router.beforeEach((to, _, next) => {
-      if (to.matched.some((record) => record.meta.requiresAuth)) {
-        next("/login");
-      } else {
-        next();
-      }
-    });
-
-    router.push("/create");
-
-    await router.isReady();
-
-    const wrapper = mount(App, {
-      global: {
-        plugins: [router],
-      },
-    });
-
-    expect(wrapper.findComponent(Create).exists()).toBe(false);
-    expect(wrapper.findComponent(Login).exists()).toBe(true);
+  const router = createRouter({
+    history: createWebHistory(),
+    routes: routes,
   });
+
+  router.beforeEach((to, _, next) => {
+    if (to.matched.some((record) => record.meta.requiresAuth)) {
+      next("/login");
+    } else {
+      next();
+    }
+  });
+
+  router.push("/create");
+
+  await router.isReady();
+
+  const wrapper = mount(App, {
+    global: {
+      plugins: [router],
+    },
+  });
+
+  expect(wrapper.findComponent(Create).exists()).toBe(false);
+  expect(wrapper.findComponent(Login).exists()).toBe(true);
+});
 ```
 
 Le test prend en entrée le component généré par Vue sensé contenir la page de création et la page de login et vérifie que le component de création n'est pas créé mais que le component de login est créé car l'utilisateur n'est pas connecté.
@@ -153,26 +158,26 @@ Le test prend en entrée le component généré par Vue sensé contenir la page 
 
 ```js
 test("change location to '/update' via routing", async () => {
-    const router = createRouter({
-      history: createWebHistory(),
-      routes: routes,
-    });
-
-    router.beforeEach((to, _, next) => {
-      if (to.matched.some((record) => record.meta.requiresAuth)) {
-        next("/login");
-      } else {
-        next();
-      }
-    });
-
-    router.push("/update");
-
-    await router.isReady();
-
-    expect(window.location.pathname).not.toBe("/update");
-    expect(window.location.pathname).toBe("/login");
+  const router = createRouter({
+    history: createWebHistory(),
+    routes: routes,
   });
+
+  router.beforeEach((to, _, next) => {
+    if (to.matched.some((record) => record.meta.requiresAuth)) {
+      next("/login");
+    } else {
+      next();
+    }
+  });
+
+  router.push("/update");
+
+  await router.isReady();
+
+  expect(window.location.pathname).not.toBe("/update");
+  expect(window.location.pathname).toBe("/login");
+});
 ```
 
 Le test prend en entrée l'url du navigateur après la redirection, et on attend que l'url soit /login et non /update, car l'utilisateur n'est pas connecté.
@@ -181,35 +186,35 @@ Le test prend en entrée l'url du navigateur après la redirection, et on attend
 
 ```js
 test("try to renders Update component via routing", async () => {
-    const router = createRouter({
-      history: createWebHistory(),
-      routes: routes,
-    });
-
-    router.beforeEach((to, _, next) => {
-      if (to.matched.some((record) => record.meta.requiresAuth)) {
-        next("/login");
-      } else {
-        next();
-      }
-    });
-
-    router.push("/update");
-
-    await router.isReady();
-
-    const wrapper = mount(App, {
-      global: {
-        plugins: [router],
-      },
-    });
-
-    expect(wrapper.findComponent(Update).exists()).toBe(false);
-    expect(wrapper.findComponent(Login).exists()).toBe(true);
+  const router = createRouter({
+    history: createWebHistory(),
+    routes: routes,
   });
-  ```
 
-  Le test prend en entrée le component généré par Vue sensé contenir la page de mise à jour et la page de login et vérifie que le component de mise à jour n'est pas créé mais que le component de login est créé car l'utilisateur n'est pas connecté.
+  router.beforeEach((to, _, next) => {
+    if (to.matched.some((record) => record.meta.requiresAuth)) {
+      next("/login");
+    } else {
+      next();
+    }
+  });
+
+  router.push("/update");
+
+  await router.isReady();
+
+  const wrapper = mount(App, {
+    global: {
+      plugins: [router],
+    },
+  });
+
+  expect(wrapper.findComponent(Update).exists()).toBe(false);
+  expect(wrapper.findComponent(Login).exists()).toBe(true);
+});
+```
+
+Le test prend en entrée le component généré par Vue sensé contenir la page de mise à jour et la page de login et vérifie que le component de mise à jour n'est pas créé mais que le component de login est créé car l'utilisateur n'est pas connecté.
 
 - La page de suppression d'une équipe
 
@@ -217,26 +222,26 @@ test("try to renders Update component via routing", async () => {
 
 ```js
 test("change location to '/delete' via routing", async () => {
-    const router = createRouter({
-      history: createWebHistory(),
-      routes: routes,
-    });
-
-    router.beforeEach((to, _, next) => {
-      if (to.matched.some((record) => record.meta.requiresAuth)) {
-        next("/login");
-      } else {
-        next();
-      }
-    });
-
-    router.push("/delete");
-
-    await router.isReady();
-
-    expect(window.location.pathname).not.toBe("/delete");
-    expect(window.location.pathname).toBe("/login");
+  const router = createRouter({
+    history: createWebHistory(),
+    routes: routes,
   });
+
+  router.beforeEach((to, _, next) => {
+    if (to.matched.some((record) => record.meta.requiresAuth)) {
+      next("/login");
+    } else {
+      next();
+    }
+  });
+
+  router.push("/delete");
+
+  await router.isReady();
+
+  expect(window.location.pathname).not.toBe("/delete");
+  expect(window.location.pathname).toBe("/login");
+});
 ```
 
 Le test prend en entrée l'url du navigateur après la redirection, et on attend que l'url soit /login et non /delete, car l'utilisateur n'est pas connecté.
@@ -245,32 +250,32 @@ Le test prend en entrée l'url du navigateur après la redirection, et on attend
 
 ```js
 test("try to renders Delete component via routing", async () => {
-    const router = createRouter({
-      history: createWebHistory(),
-      routes: routes,
-    });
-
-    router.beforeEach((to, _, next) => {
-      if (to.matched.some((record) => record.meta.requiresAuth)) {
-        next("/login");
-      } else {
-        next();
-      }
-    });
-
-    router.push("/delete");
-
-    await router.isReady();
-
-    const wrapper = mount(App, {
-      global: {
-        plugins: [router],
-      },
-    });
-
-    expect(wrapper.findComponent(Delete).exists()).toBe(false);
-    expect(wrapper.findComponent(Login).exists()).toBe(true);
+  const router = createRouter({
+    history: createWebHistory(),
+    routes: routes,
   });
+
+  router.beforeEach((to, _, next) => {
+    if (to.matched.some((record) => record.meta.requiresAuth)) {
+      next("/login");
+    } else {
+      next();
+    }
+  });
+
+  router.push("/delete");
+
+  await router.isReady();
+
+  const wrapper = mount(App, {
+    global: {
+      plugins: [router],
+    },
+  });
+
+  expect(wrapper.findComponent(Delete).exists()).toBe(false);
+  expect(wrapper.findComponent(Login).exists()).toBe(true);
+});
 ```
 
 Le test prend en entrée le component généré par Vue sensé contenir la page de suppression et la page de login et vérifie que le component de suppression n'est pas créé mais que le component de login est créé car l'utilisateur n'est pas connecté.
@@ -283,29 +288,29 @@ Le test prend en entrée le component généré par Vue sensé contenir la page 
 
 ```js
 test("change location to '/' via routing and auth", async () => {
-    const router = createRouter({
-      history: createWebHistory(),
-      routes: routes,
-    });
-
-    router.beforeEach((to, _, next) => {
-      if (to.matched.some((record) => record.meta.requiresAuth)) {
-        if (to.query.auth) {
-          next();
-        } else {
-          next("/login");
-        }
-      } else {
-        next();
-      }
-    });
-
-    router.push({ path: "/", query: { auth: 1 } });
-
-    await router.isReady();
-
-    expect(window.location.pathname).toBe("/");
+  const router = createRouter({
+    history: createWebHistory(),
+    routes: routes,
   });
+
+  router.beforeEach((to, _, next) => {
+    if (to.matched.some((record) => record.meta.requiresAuth)) {
+      if (to.query.auth) {
+        next();
+      } else {
+        next("/login");
+      }
+    } else {
+      next();
+    }
+  });
+
+  router.push({ path: "/", query: { auth: 1 } });
+
+  await router.isReady();
+
+  expect(window.location.pathname).toBe("/");
+});
 ```
 
 Le test prend en entrée l'url actuelle du navigateur sensé avoir été redirigé vers l'accueil, et attend le chemin / car c'est le chemin de l'accueil du site
@@ -314,35 +319,35 @@ Le test prend en entrée l'url actuelle du navigateur sensé avoir été redirig
 
 ```js
 test("try to renders TeamList component via routing and auth", async () => {
-    const router = createRouter({
-      history: createWebHistory(),
-      routes: routes,
-    });
-
-    router.beforeEach((to, _, next) => {
-      if (to.matched.some((record) => record.meta.requiresAuth)) {
-        if (to.query.auth) {
-          next();
-        } else {
-          next("/login");
-        }
-      } else {
-        next();
-      }
-    });
-
-    router.push({ path: "/", query: { auth: 1 } });
-
-    await router.isReady();
-
-    const wrapper = mount(App, {
-      global: {
-        plugins: [router],
-      },
-    });
-
-    expect(wrapper.findComponent(TeamList).exists()).toBe(true);
+  const router = createRouter({
+    history: createWebHistory(),
+    routes: routes,
   });
+
+  router.beforeEach((to, _, next) => {
+    if (to.matched.some((record) => record.meta.requiresAuth)) {
+      if (to.query.auth) {
+        next();
+      } else {
+        next("/login");
+      }
+    } else {
+      next();
+    }
+  });
+
+  router.push({ path: "/", query: { auth: 1 } });
+
+  await router.isReady();
+
+  const wrapper = mount(App, {
+    global: {
+      plugins: [router],
+    },
+  });
+
+  expect(wrapper.findComponent(TeamList).exists()).toBe(true);
+});
 ```
 
 Le test prend en entrée le component généré par Vue sensé contenir la liste des équipes et vérifie qu'il a été généré par Vue
@@ -353,29 +358,29 @@ Le test prend en entrée le component généré par Vue sensé contenir la liste
 
 ```js
 test("change location to '/create' via routing and auth", async () => {
-    const router = createRouter({
-      history: createWebHistory(),
-      routes: routes,
-    });
-
-    router.beforeEach((to, _, next) => {
-      if (to.matched.some((record) => record.meta.requiresAuth)) {
-        if (to.query.auth) {
-          next();
-        } else {
-          next("/login");
-        }
-      } else {
-        next();
-      }
-    });
-
-    router.push({ path: "/create", query: { auth: 1 } });
-
-    await router.isReady();
-
-    expect(window.location.pathname).toBe("/create");
+  const router = createRouter({
+    history: createWebHistory(),
+    routes: routes,
   });
+
+  router.beforeEach((to, _, next) => {
+    if (to.matched.some((record) => record.meta.requiresAuth)) {
+      if (to.query.auth) {
+        next();
+      } else {
+        next("/login");
+      }
+    } else {
+      next();
+    }
+  });
+
+  router.push({ path: "/create", query: { auth: 1 } });
+
+  await router.isReady();
+
+  expect(window.location.pathname).toBe("/create");
+});
 ```
 
 Le test prend en entrée l'url du navigateur après la redirection, et on attend que l'url soit /Create.
@@ -384,35 +389,35 @@ Le test prend en entrée l'url du navigateur après la redirection, et on attend
 
 ```js
 test("try to renders Create component via routing and auth", async () => {
-    const router = createRouter({
-      history: createWebHistory(),
-      routes: routes,
-    });
-
-    router.beforeEach((to, _, next) => {
-      if (to.matched.some((record) => record.meta.requiresAuth)) {
-        if (to.query.auth) {
-          next();
-        } else {
-          next("/login");
-        }
-      } else {
-        next();
-      }
-    });
-
-    router.push({ path: "/create", query: { auth: 1 } });
-
-    await router.isReady();
-
-    const wrapper = mount(App, {
-      global: {
-        plugins: [router],
-      },
-    });
-
-    expect(wrapper.findComponent(Create).exists()).toBe(true);
+  const router = createRouter({
+    history: createWebHistory(),
+    routes: routes,
   });
+
+  router.beforeEach((to, _, next) => {
+    if (to.matched.some((record) => record.meta.requiresAuth)) {
+      if (to.query.auth) {
+        next();
+      } else {
+        next("/login");
+      }
+    } else {
+      next();
+    }
+  });
+
+  router.push({ path: "/create", query: { auth: 1 } });
+
+  await router.isReady();
+
+  const wrapper = mount(App, {
+    global: {
+      plugins: [router],
+    },
+  });
+
+  expect(wrapper.findComponent(Create).exists()).toBe(true);
+});
 ```
 
 Le test prend en entrée le component généré par Vue sensé contenir la page de création et vérifie que le component de création est créé.
@@ -423,29 +428,29 @@ Le test prend en entrée le component généré par Vue sensé contenir la page 
 
 ```js
 test("change location to '/update' via routing and auth", async () => {
-    const router = createRouter({
-      history: createWebHistory(),
-      routes: routes,
-    });
-
-    router.beforeEach((to, _, next) => {
-      if (to.matched.some((record) => record.meta.requiresAuth)) {
-        if (to.query.auth) {
-          next();
-        } else {
-          next("/login");
-        }
-      } else {
-        next();
-      }
-    });
-
-    router.push({ path: "/update", query: { auth: 1 } });
-
-    await router.isReady();
-
-    expect(window.location.pathname).toBe("/update");
+  const router = createRouter({
+    history: createWebHistory(),
+    routes: routes,
   });
+
+  router.beforeEach((to, _, next) => {
+    if (to.matched.some((record) => record.meta.requiresAuth)) {
+      if (to.query.auth) {
+        next();
+      } else {
+        next("/login");
+      }
+    } else {
+      next();
+    }
+  });
+
+  router.push({ path: "/update", query: { auth: 1 } });
+
+  await router.isReady();
+
+  expect(window.location.pathname).toBe("/update");
+});
 ```
 
 Le test prend en entrée l'url du navigateur après la redirection, et on attend que l'url soit /update.
@@ -454,35 +459,35 @@ Le test prend en entrée l'url du navigateur après la redirection, et on attend
 
 ```js
 test("try to renders Update component via routing and auth", async () => {
-    const router = createRouter({
-      history: createWebHistory(),
-      routes: routes,
-    });
-
-    router.beforeEach((to, _, next) => {
-      if (to.matched.some((record) => record.meta.requiresAuth)) {
-        if (to.query.auth) {
-          next();
-        } else {
-          next("/login");
-        }
-      } else {
-        next();
-      }
-    });
-
-    router.push({ path: "/update", query: { auth: 1 } });
-
-    await router.isReady();
-
-    const wrapper = mount(App, {
-      global: {
-        plugins: [router],
-      },
-    });
-
-    expect(wrapper.findComponent(Update).exists()).toBe(true);
+  const router = createRouter({
+    history: createWebHistory(),
+    routes: routes,
   });
+
+  router.beforeEach((to, _, next) => {
+    if (to.matched.some((record) => record.meta.requiresAuth)) {
+      if (to.query.auth) {
+        next();
+      } else {
+        next("/login");
+      }
+    } else {
+      next();
+    }
+  });
+
+  router.push({ path: "/update", query: { auth: 1 } });
+
+  await router.isReady();
+
+  const wrapper = mount(App, {
+    global: {
+      plugins: [router],
+    },
+  });
+
+  expect(wrapper.findComponent(Update).exists()).toBe(true);
+});
 ```
 
 Le test prend en entrée le component généré par Vue sensé contenir la page de mise à jour et vérifie que le component de mise à jour est créé.
@@ -493,29 +498,29 @@ Le test prend en entrée le component généré par Vue sensé contenir la page 
 
 ```js
 test("change location to '/delete' via routing and auth", async () => {
-    const router = createRouter({
-      history: createWebHistory(),
-      routes: routes,
-    });
-
-    router.beforeEach((to, _, next) => {
-      if (to.matched.some((record) => record.meta.requiresAuth)) {
-        if (to.query.auth) {
-          next();
-        } else {
-          next("/login");
-        }
-      } else {
-        next();
-      }
-    });
-
-    router.push({ path: "/delete", query: { auth: 1 } });
-
-    await router.isReady();
-
-    expect(window.location.pathname).toBe("/delete");
+  const router = createRouter({
+    history: createWebHistory(),
+    routes: routes,
   });
+
+  router.beforeEach((to, _, next) => {
+    if (to.matched.some((record) => record.meta.requiresAuth)) {
+      if (to.query.auth) {
+        next();
+      } else {
+        next("/login");
+      }
+    } else {
+      next();
+    }
+  });
+
+  router.push({ path: "/delete", query: { auth: 1 } });
+
+  await router.isReady();
+
+  expect(window.location.pathname).toBe("/delete");
+});
 ```
 
 Le test prend en entrée l'url du navigateur après la redirection, et on attend que l'url soit /delete.
@@ -524,33 +529,33 @@ Le test prend en entrée l'url du navigateur après la redirection, et on attend
 
 ```js
 test("try to renders Update component via routing and auth", async () => {
-    const router = createRouter({
-      history: createWebHistory(),
-      routes: routes,
-    });
-
-    router.beforeEach((to, _, next) => {
-      if (to.matched.some((record) => record.meta.requiresAuth)) {
-        if (to.query.auth) {
-          next();
-        } else {
-          next("/login");
-        }
-      } else {
-        next();
-      }
-    });
-
-    router.push({ path: "/delete", query: { auth: 1 } });
-
-    await router.isReady();
-
-    const wrapper = mount(App, {
-      global: {
-        plugins: [router],
-      },
-    });
-
-    expect(wrapper.findComponent(Delete).exists()).toBe(true);
+  const router = createRouter({
+    history: createWebHistory(),
+    routes: routes,
   });
+
+  router.beforeEach((to, _, next) => {
+    if (to.matched.some((record) => record.meta.requiresAuth)) {
+      if (to.query.auth) {
+        next();
+      } else {
+        next("/login");
+      }
+    } else {
+      next();
+    }
+  });
+
+  router.push({ path: "/delete", query: { auth: 1 } });
+
+  await router.isReady();
+
+  const wrapper = mount(App, {
+    global: {
+      plugins: [router],
+    },
+  });
+
+  expect(wrapper.findComponent(Delete).exists()).toBe(true);
+});
 ```

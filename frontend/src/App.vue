@@ -14,9 +14,7 @@ onUpdated(() => {
       .get(`http://localhost:8080/verifyToken?token=${token}`)
       .then((response: any) => {
         if (!response.data.active) {
-          localStorage.removeItem("token");
-          tokenRef.value = false;
-          router.push("/");
+          logout();
         } else if (response.data.active && tokenRef.value == false) {
           tokenRef.value = true;
         }

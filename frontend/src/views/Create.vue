@@ -3,10 +3,10 @@
     <div
       class="bg-base-300 shadow p-4 w-[50rem] rounded-box flex flex-col gap-8"
     >
-      <h1 class="text-2xl font-bold">Create Team</h1>
+      <h1 class="text-2xl font-bold">Créer une équipe</h1>
       <label className="form-control w-full max-w-md">
         <div className="label">
-          <span className="label-text text-lg">Team name :</span>
+          <span className="label-text text-lg opacity-45 font-semibold italic">Nom :</span>
         </div>
         <input
           type="text"
@@ -15,7 +15,7 @@
       </label>
       <label className="form-control w-full max-w-md">
         <div className="label">
-          <span className="label-text text-lg">Team description :</span>
+          <span className="label-text text-lg opacity-45 font-semibold italic">Description :</span>
         </div>
         <textarea
           className="textarea textarea-primary textarea-lg w-full max-w-md"
@@ -23,12 +23,12 @@
       </label>
       <label className="form-control w-full max-w-md">
         <div className="label">
-          <span className="label-text text-lg">Team logo :</span>
+          <span className="label-text text-lg opacity-45 font-semibold italic">Logo :</span>
         </div>
         <input
           type="file"
-          className="file-input file-input-bordered file-input-primary w-full  max-w-md"
-        />
+          lang="en"
+          className="file-input file-input-bordered file-input-primary w-full max-w-md"/>  
       </label>
       <div class="flex justify-end">
         <button className="btn btn-neutral">
@@ -46,7 +46,7 @@
               d="M12 4.5v15m7.5-7.5h-15"
             />
           </svg>
-          Create
+          Créer
         </button>
       </div>
     </div>

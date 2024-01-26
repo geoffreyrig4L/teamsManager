@@ -8,7 +8,7 @@ function login() {
 }
 
 defineProps<{
-  token?: any;
+  token?: boolean;
   logout?: any;
 }>();
 </script>
@@ -65,7 +65,7 @@ defineProps<{
           </ul>
         </li>
       </ul>
-      <div class="absolute bottom-4 left-0 p-4 w-full" v-if="token == null">
+      <div class="absolute bottom-4 left-0 p-4 w-full" v-if="!token">
         <button class="btn btn-ghost w-full text-xl" @click="login">
           Login
           <svg

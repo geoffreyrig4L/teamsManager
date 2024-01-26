@@ -4,7 +4,7 @@ import Drawer from "./components/Drawer.vue";
 import { useRoute, useRouter } from "vue-router";
 import { onMounted, onUpdated, ref } from "vue";
 
-const tokenRef = ref(null);
+const tokenRef = ref(false);
 const router = useRouter();
 
 onUpdated(() => {
@@ -32,7 +32,7 @@ onMounted(() => {
         .get(`http://localhost:8080/getToken?code=${code}`)
         .then((response: any) => {
           localStorage.setItem("token", response.data.token);
-          tokenRef.value = response.data.token;
+          tokenRef.value = true;
         });
     } catch (e) {
       console.log(e);
@@ -42,7 +42,8 @@ onMounted(() => {
 
 function logout() {
   localStorage.removeItem("token");
-  tokenRef.value = null;
+  tokenRef.value = false;
+
   router.push("/");
 }
 

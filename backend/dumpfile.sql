@@ -636,8 +636,8 @@ CREATE TABLE `permission` (
 LOCK TABLES `permission` WRITE;
 /*!40000 ALTER TABLE `permission` DISABLE KEYS */;
 INSERT INTO `permission` VALUES
-('golmon','permission_admin','2024-01-26T11:17:56+01:00','permission_admin','','[\"golmon/admin\"]','[]','[]','[\"*\"]','','','Application','[\"golmon_app\"]','[\"Read\",\"Write\",\"Admin\"]','Allow',1,'admin','','','Approved'),
-('golmon','permission_admingod','2024-01-26T13:57:08+01:00','permission_admingod','','[\"golmon/admin\"]','[]','[]','[\"*\"]','','','Application','[\"golmon_app\"]','[\"Admin\"]','Allow',1,'admin','','','Approved'),
+('golmon','permission_admin','2024-01-26T11:17:56+01:00','permission_admin','','[\"golmon/admin\"]','[]','[]','[\"*\"]','','','Application','[\"golmon_app\"]','[\"Admin\"]','Allow',1,'admin','','','Approved'),
+('golmon','permission_admingod','2024-01-26T13:57:08+01:00','permission_admingod','','[\"golmon/admin\"]','[]','[]','[\"*\"]','','','Custom','[\"golmon_app\"]','[\"Read\",\"Write\",\"Admin\"]','Allow',0,'admin','','','Approved'),
 ('golmon','permission_ecrire','2024-01-26T09:52:05+01:00','permission_ecrire','','[\"golmon/writer\"]','[]','[]','[\"*\"]','','','Application','[\"app-built-in\"]','[\"Write\"]','Allow',1,'admin','','','Approved'),
 ('golmon','permission_lire','2024-01-26T10:00:06+01:00','permission_lire','','[\"golmon/reader\"]','[]','[]','[\"*\"]','','','Application','[\"golmon_app\"]','[\"Read\"]','Allow',1,'admin','','','Approved');
 /*!40000 ALTER TABLE `permission` ENABLE KEYS */;

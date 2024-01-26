@@ -35,6 +35,14 @@ const CasdoorRoutes = ({ app }) => {
     }
   });
 
+  app.get('/getUserInfo', (req, res) => {
+    let urlObj = url.parse(req.url, true).query;
+    console.log(urlObj)
+    let user = sdk.parseJwtToken(urlObj.token);
+    console.log(user)
+    res.send(JSON.stringify(user));
+  });
+
   app.get("/verifyToken", async (req, res) => {
     const token = req.query.token;
     const tokenTypeHint = "access_token";

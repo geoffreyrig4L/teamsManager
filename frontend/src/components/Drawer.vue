@@ -6,6 +6,7 @@ import axios from "axios";
 const casdoor = useCasdoor();
 const token = localStorage.getItem("token") ?? ""
 
+
 onMounted(() => {
   const urlParams = new URLSearchParams(window.location.search);
   const authorizationCode = urlParams.get('code');
@@ -58,7 +59,7 @@ function logout() {
             </li>
           </ul>
         </li>
-        <li>
+        <li >
           <h2 className="menu-title">Manage</h2>
           <ul>
             <li>

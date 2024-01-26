@@ -1,11 +1,40 @@
 <script setup lang="ts">
+import axios from "axios";
 import { useCasdoor } from "casdoor-vue-sdk";
+import { onUpdated, ref } from "vue";
 
 const casdoor = useCasdoor();
 
 function login() {
   window.location.href = casdoor.getSigninUrl();
 }
+
+const canCreate = ref(false);
+const canUpdate = ref(false);
+const canDelete = ref(false);
+
+const fetchData = async () => {
+  const token = localStorage.getItem("token") ?? "";
+  try {
+    const create = await axios.get(
+      `http://localhost:8080/isPermited?token=${token}&isPermission=canCreate`
+    );
+    canCreate.value = create.data.authorized;
+    const update = await axios.get(
+      `http://localhost:8080/isPermited?token=${token}&isPermission=canUpdate`
+    );
+    canUpdate.value = update.data.authorized;
+    const delette = await axios.get(
+      `http://localhost:8080/isPermited?token=${token}&isPermission=canDelete`
+    );
+    canDelete.value = delette.data.authorized;
+    console.log(delette);
+  } catch (error) {
+    console.error("Error fetching:", error);
+  }
+};
+
+onUpdated(fetchData);
 
 defineProps<{
   token?: boolean;
@@ -43,26 +72,35 @@ defineProps<{
         <li v-if="token">
           <h2 className="menu-title">Gérer</h2>
           <ul>
-            <li>
+            <li :class="{ disabled: !canCreate }">
               <router-link
                 to="/create"
-                :class="{ active: $route.path == '/create' }"
+                :class="{
+                  active: $route.path == '/create',
+                  'btn-disabled': !canCreate,
+                }"
               >
                 Créer une équipe
               </router-link>
             </li>
-            <li>
+            <li :class="{ disabled: !canUpdate }">
               <router-link
                 to="/update"
-                :class="{ active: $route.path == '/update' }"
+                :class="{
+                  active: $route.path == '/update',
+                  'btn-disabled': !canUpdate,
+                }"
               >
                 Modifier une équipe
               </router-link>
             </li>
-            <li :class="{ disabled: true }">
+            <li :class="{ disabled: !canDelete }">
               <router-link
                 to="/delete"
-                :class="{ active: $route.path == '/delete' }"
+                :class="{
+                  active: $route.path == '/delete',
+                  'btn-disabled': !canDelete,
+                }"
               >
                 Supprimer une équipe
               </router-link>
@@ -73,10 +111,20 @@ defineProps<{
       <div class="absolute bottom-4 left-0 p-4 w-full" v-if="!token">
         <button class="btn btn-ghost w-full text-xl" @click="login">
           Se connecter
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H2.25" />
-</svg>
-
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H2.25"
+            />
+          </svg>
         </button>
       </div>
       <div class="absolute bottom-4 left-0 p-4 w-full" v-else>

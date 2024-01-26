@@ -1,35 +1,16 @@
 <script setup lang="ts">
 import { useCasdoor } from "casdoor-vue-sdk";
-import { onMounted } from "vue";
-import axios from "axios";
 
 const casdoor = useCasdoor();
-const token = localStorage.getItem("token") ?? ""
-
-
-onMounted(() => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const authorizationCode = urlParams.get('code');
-  if (authorizationCode) {
-    const code : string = authorizationCode;
-    try {
-      axios.get(`http://localhost:8080/getToken?code=${code}`).then((response : any) => {
-        localStorage.setItem("token", response.data.token);
-      })
-    } catch(e) {
-      console.log(e);
-    }
-  }
-});
 
 function login() {
   window.location.href = casdoor.getSigninUrl();
 }
 
-function logout() {
-  localStorage.removeItem("token")
-}
-
+defineProps<{
+  token?: boolean;
+  logout?: any;
+}>();
 </script>
 
 <template>
@@ -41,12 +22,7 @@ function logout() {
     <div class="drawer-side">
       <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
         <div class="flex items-center gap-4 my-4">
-          <img
-            src="/logos/om.svg"
-            alt="My Image"
-            width="50"
-            height="auto"
-          />
+          <img src="/logos/om.svg" alt="My Image" width="50" height="auto" />
           <h1 class="text-2xl font-bold">Team Manager</h1>
         </div>
         <li>
@@ -59,7 +35,11 @@ function logout() {
             </li>
           </ul>
         </li>
+<<<<<<< HEAD
         <li >
+=======
+        <li v-if="token">
+>>>>>>> 46baaffeac93dec4db18518f5c6faaf30521f4c9
           <h2 className="menu-title">Manage</h2>
           <ul>
             <li>
@@ -89,7 +69,7 @@ function logout() {
           </ul>
         </li>
       </ul>
-      <div class="absolute bottom-4 left-0 p-4 w-full" v-if="token === ''">
+      <div class="absolute bottom-4 left-0 p-4 w-full" v-if="!token">
         <button class="btn btn-ghost w-full text-xl" @click="login">
           Login
           <svg

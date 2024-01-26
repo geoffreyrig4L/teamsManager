@@ -7,6 +7,7 @@ import Login from "../views/Login.vue";
 
 const routes = [
   { path: "/", component: TeamList, props: true },
+  { path: "/callback", redirect: "/" },
   { path: "/login", component: Login },
   {
     path: "/create",
